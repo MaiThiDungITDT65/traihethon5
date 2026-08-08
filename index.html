@@ -1049,7 +1049,7 @@
 
     <div class="video-feature">
       <div class="video-frame">
-        <video controls preload="metadata" playsinline>
+        <video controls preload="metadata" playsinline poster="assets/video/nhat-ky-chi-doi-poster.jpg" aria-label="Video nhật ký Chi đội Lý Tự Trọng">
           <source src="assets/video/nhat-ky-chi-doi.mp4" type="video/mp4">
           Trình duyệt của bạn không hỗ trợ phát video HTML5.
         </video>
@@ -1391,6 +1391,23 @@
   }
   const environmentStory = document.querySelector('.activity-story:nth-child(3) .story-copy p');
   if (environmentStory) environmentStory.textContent = 'Các đội viên và đoàn viên thanh niên cùng chăm chút từng góc sân, con đường và không gian chung bằng những việc làm giản dị nhưng đầy trách nhiệm.';
+  // Trên điện thoại: khi người dùng bấm phát video, tự chuyển sang toàn màn hình.
+  // iOS Safari dùng webkitEnterFullscreen(), các trình duyệt khác dùng Fullscreen API.
+  const featureVideo = document.querySelector('.video-frame video');
+  if (featureVideo) {
+    featureVideo.addEventListener('play', () => {
+      if (!window.matchMedia('(max-width: 760px)').matches) return;
+      try {
+        if (typeof featureVideo.webkitEnterFullscreen === 'function') {
+          featureVideo.webkitEnterFullscreen();
+        } else if (featureVideo.requestFullscreen && !document.fullscreenElement) {
+          const request = featureVideo.requestFullscreen();
+          if (request?.catch) request.catch(() => {});
+        }
+      } catch (_) {}
+    });
+  }
+
   const albumSection = [...document.querySelectorAll('section.block')].find((section) => section.querySelector('.section-head .idx')?.textContent.trim() === '07');
   if (albumSection) {
     const title = albumSection.querySelector('.section-head h2');
