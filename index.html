@@ -696,6 +696,48 @@
     border-radius:8px;
     background:var(--ink);
   }
+  /* Fullscreen mobile: phóng to cả khung chứa video để tránh màn hình đen
+     trên một số trình duyệt Android/Chrome khi fullscreen trực tiếp <video>. */
+  .video-frame:fullscreen{
+    width:100vw;
+    height:100vh;
+    margin:0;
+    padding:0;
+    border:0;
+    border-radius:0;
+    background:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .video-frame:fullscreen video{
+    width:100%;
+    height:100%;
+    max-height:100vh;
+    object-fit:contain;
+    border-radius:0;
+    background:#000;
+  }
+  .video-frame:-webkit-full-screen{
+    width:100vw;
+    height:100vh;
+    margin:0;
+    padding:0;
+    border:0;
+    border-radius:0;
+    background:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .video-frame:-webkit-full-screen video{
+    width:100%;
+    height:100%;
+    max-height:100vh;
+    object-fit:contain;
+    border-radius:0;
+    background:#000;
+  }
   .video-copy h3{
     font-family:var(--f-display); font-weight:700;
     font-size:1.3rem; margin:0 0 12px;
@@ -1391,17 +1433,20 @@
   }
   const environmentStory = document.querySelector('.activity-story:nth-child(3) .story-copy p');
   if (environmentStory) environmentStory.textContent = 'Các đội viên và đoàn viên thanh niên cùng chăm chút từng góc sân, con đường và không gian chung bằng những việc làm giản dị nhưng đầy trách nhiệm.';
-  // Trên điện thoại: khi người dùng bấm phát video, tự chuyển sang toàn màn hình.
-  // iOS Safari dùng webkitEnterFullscreen(), các trình duyệt khác dùng Fullscreen API.
+  // Trên điện thoại: fullscreen được gọi trực tiếp từ thao tác chạm/click của người dùng.
+  // Không gọi từ sự kiện `play` vì một số trình duyệt sẽ mở fullscreen nhưng render video đen
+  // ở lần đầu. Android/Chrome fullscreen cả khung chứa; iOS Safari dùng API riêng của video.
   const featureVideo = document.querySelector('.video-frame video');
-  if (featureVideo) {
-    featureVideo.addEventListener('play', () => {
+  const videoFrame = featureVideo?.closest('.video-frame');
+  if (featureVideo && videoFrame) {
+    featureVideo.addEventListener('click', () => {
       if (!window.matchMedia('(max-width: 760px)').matches) return;
       try {
         if (typeof featureVideo.webkitEnterFullscreen === 'function') {
+          // iPhone/iPad Safari: API này phải được gọi trong chính thao tác của người dùng.
           featureVideo.webkitEnterFullscreen();
-        } else if (featureVideo.requestFullscreen && !document.fullscreenElement) {
-          const request = featureVideo.requestFullscreen();
+        } else if (!document.fullscreenElement && videoFrame.requestFullscreen) {
+          const request = videoFrame.requestFullscreen();
           if (request?.catch) request.catch(() => {});
         }
       } catch (_) {}
