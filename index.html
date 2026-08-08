@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi đội Lý Tự Trọng | Thôn 5</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+  /* ============ HERO ============ */
+  .intro-hero{
+    position:relative;
+    padding:64px 0 56px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 18% -10%, rgba(69,200,255,0.26), transparent 55%),
+      radial-gradient(ellipse at 100% 0%, rgba(216,39,88,0.10), transparent 50%),
+      var(--paper);
+  }
+  .intro-hero .container{ position:relative; z-index:2; }
+  .heritage-strip{
+    width:min(520px, 100%);
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    grid-template-areas:
+      "doan center doi"
+      "name name name";
+    align-items:end;
+    column-gap:20px;
+    row-gap:14px;
+    margin:0 auto 30px;
+    position:relative;
+  }
+  .heritage-emblem, .heritage-center{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:7px; }
+  .heritage-emblem:first-child{ grid-area:doan; justify-self:end; }
+  .heritage-emblem:nth-child(3){ grid-area:doi; justify-self:start; }
+  .heritage-emblem img{ width:66px; height:66px; object-fit:contain; filter:drop-shadow(0 4px 8px rgba(19,89,184,.18)); }
+  .heritage-center{ grid-area:center; gap:5px; align-self:start; }
+  .national-flag{ width:58px; height:34px; border-radius:3px; overflow:hidden; box-shadow:0 3px 8px rgba(19,33,59,.2); }
+  .portrait-bac{ width:58px; height:58px; border-radius:50%; background:#fff; border:3px solid var(--gold); display:grid; place-items:center; box-shadow:0 4px 10px rgba(19,33,59,.16); overflow:hidden; }
+  .portrait-bac img{ width:100%; height:100%; object-fit:cover; }
+  .gate-nameplate{
+    grid-area:name;
+    width:100%;
+    text-align:center;
+    padding:12px 18px 11px;
+    background:linear-gradient(180deg, #D82758 0%, #B71843 100%);
+    border:2px solid var(--gold);
+    border-radius:3px;
+    box-shadow:0 5px 12px rgba(111,15,42,.22);
+    position:relative;
+    animation:gate-banner-glow 1.1s steps(2, end) infinite;
+  }
+  .gate-nameplate::before, .gate-nameplate::after{
+    content:""; position:absolute; top:8px; bottom:8px; width:10px;
+    background:radial-gradient(circle, #FFFFFF 0 2.4px, #FFE16E 2.5px 3.4px, transparent 3.5px) center top / 10px 14px repeat-y;
+    filter:drop-shadow(0 0 5px #FFF0A1);
+    animation:gate-banner-lights .55s steps(2, end) infinite alternate;
+  }
+  .gate-nameplate::before{ left:5px; }
+  .gate-nameplate::after{ right:5px; }
+  .gate-nameplate .gate-event{ display:block; margin:0; color:#FFE08A; font-family:var(--f-display); font-size:1.2rem; font-weight:800; line-height:1.05; letter-spacing:.05em; text-shadow:0 1px 0 rgba(100,0,30,.35); }
+  .gate-nameplate span{ display:block; margin-top:5px; color:#fff; font-size:.7rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; }
+  @keyframes gate-banner-glow{
+    from{ border-color:#F4BE3B; box-shadow:0 5px 12px rgba(111,15,42,.22), 0 0 10px rgba(244,190,59,.65); }
+    to{ border-color:#FFFFFF; box-shadow:0 5px 12px rgba(111,15,42,.22), 0 0 30px rgba(255,224,138,1), inset 0 0 10px rgba(255,224,138,.32); }
+  }
+  @keyframes gate-banner-lights{ from{ opacity:.65; filter:drop-shadow(0 0 3px #FFE08A); } to{ opacity:1; filter:drop-shadow(0 0 9px #FFFFFF); } }
+  .wayfinding.camp-header{ background:rgba(247,251,255,.94); }
+  .wayfinding.camp-header .container{ justify-content:center; padding:12px 0 10px; }
+  .wayfinding.camp-header .heritage-strip{ margin:0; }
+  @media (max-width:560px){ .heritage-strip{ column-gap:8px; margin-bottom:24px; } .heritage-emblem img{ width:54px; height:54px; } .gate-nameplate{ padding:8px; } .gate-nameplate::before, .gate-nameplate::after{ display:block; top:6px; bottom:6px; width:7px; background-size:7px 11px; } .gate-nameplate .gate-event{ font-size:1.02rem; } .gate-nameplate span{ font-size:.58rem; } }
+  .hero-layout{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:28px;
+    align-items:center;
+  }
+  .hero-layout > *,
+  .team-photo-wrap > *,
+  .squad-overview > *,
+  .support-timeline li > *{ min-width:0; }
+  @media (max-width:820px){
+    .hero-layout{ grid-template-columns:1fr; }
+    .hero-group-photo{ order:-1; max-width:420px; margin:0 auto; }
+  }
+  .hero-group-photo{
+    margin:0;
+    align-self:center;
+  }
+  .hero-group-photo img{
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:var(--radius-m);
+    box-shadow:var(--shadow-card);
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:0;
+    font-size:0.82rem; font-weight:700; letter-spacing:0.08em;
+    text-transform:uppercase; color:#FFE08A;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 16px, rgba(255,224,138,.09) 16px 18px),
+      linear-gradient(180deg, #DE315F 0%, #B71843 100%);
+    border:3px solid var(--gold);
+    padding:8px 16px 8px 12px;
+    border-radius:3px;
+    box-shadow:0 5px 0 #9E173B, 0 9px 16px rgba(111,15,42,.2), inset 0 0 0 2px rgba(255,255,255,.2);
+    margin-bottom:22px;
+    position:relative;
+    text-shadow:0 1px 0 rgba(103,0,30,.4);
+    background-size:36px 100%, 100% 100%;
+    animation:banner-shimmer 5s linear infinite;
+  }
+  .eyebrow::before, .eyebrow::after{
+    content:""; position:absolute; left:10px; right:10px; height:1px;
+    background:rgba(255,224,138,.75); pointer-events:none;
+  }
+  .eyebrow::before{ top:5px; }
+  .eyebrow::after{ bottom:5px; }
+  @keyframes banner-shimmer{
+    from{ background-position:0 0, 0 0; }
+    to{ background-position:72px 0, 0 0; }
+  }
+  .eyebrow .dot{ display:none; }
+  .intro-hero h1{
+    font-family:var(--f-display);
+    font-weight:800;
+    font-size:clamp(2.1rem, 5.4vw, 3.6rem);
+    line-height:1.08;
+    margin:0 0 14px;
+    color:var(--ink);
+    max-width:16ch;
+  }
+  .intro-hero h1 span{ color:var(--red); }
+  .intro-hero .lede{
+    font-size:clamp(1.06rem, 1.6vw, 1.18rem);
+    font-weight:500;
+    color:var(--ink-soft);
+    max-width:52ch;
+    line-height:1.65;
+    margin:0 0 30px;
+  }
+  .hero-stats{
+    display:flex; flex-wrap:wrap; gap:14px;
+  }
+  .stat-pill{
+    background:#fff;
+    border:1px solid var(--paper-line);
+    border-radius:var(--radius-m);
+    padding:16px 22px;
+    min-width:120px;
+    box-shadow:var(--shadow-card);
+  }
+  .stat-pill .num{
+    font-family:var(--f-display);
+    font-weight:800;
+    font-size:1.9rem;
+    color:var(--red-deep);
+    line-height:1;
+  }
+  .stat-pill .lbl{
+    font-size:0.72rem;
+    font-weight:700;
+    color:#3C5272;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-top:6px;
+  }
+  .stat-pill.jade .num{ color:var(--jade); }
+  .stat-pill.blue .num{ color:var(--blue); }
+
+  .hero-glyph{
+    position:absolute;
+    top:-40px; right:-60px;
+    width:min(420px, 46vw);
+    opacity:0.9;
+    z-index:1;
+  }
+  @media (max-width:760px){ .hero-glyph{ display:none; } }
+
+  /* ============ SECTION HEADER ============ */
+  .section-head{
+    display:flex; align-items:baseline; gap:14px;
+    margin-bottom:30px;
+  }
+  .section-head .idx{
+    font-family:var(--f-display);
+    font-weight:800;
+    font-size:0.85rem;
+    color:#fff;
+    background:var(--red);
+    width:34px; height:34px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex:none;
+  }
+  .section-head h2{
+    font-family:var(--f-display);
+    font-weight:700;
+    font-size:clamp(1.35rem, 2.6vw, 1.85rem);
+    margin:0;
+    color:var(--ink);
+    min-width:0;
+    overflow-wrap:anywhere;
+  }
+  .section-head .rule{
+    flex:1; height:1px;
+    background:linear-gradient(90deg, var(--paper-line), transparent);
+  }
+
+  section.block{ padding:56px 0; }
+  section.block.alt{ background:var(--paper-deep); }
+
+  /* ============ BAN CÁN SỰ ============ */
+  .roster{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:16px;
+  }
+  @media (max-width:900px){ .roster{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px){ .roster{ grid-template-columns:1fr; } }
+
+  .role-card{
+    background:#fff;
+    border:1px solid var(--paper-line);
+    border-radius:var(--radius-m);
+    padding:22px 20px;
+    position:relative;
+    box-shadow:var(--shadow-card);
+  }
+  .role-photo{
+    width:100%;
+    aspect-ratio:1/1;
+    margin:0 0 18px;
+    border-radius:10px;
+    overflow:hidden;
+    background:repeating-linear-gradient(45deg, #F5FAFF, #F5FAFF 10px, #E2EFFF 10px, #E2EFFF 20px);
+    border:2px dashed var(--paper-line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--ink-soft);
+    text-align:center;
+    padding:12px;
+  }
+  .role-photo svg{ width:34px; height:34px; opacity:.55; }
+  .role-photo .hint{ font-size:.72rem; line-height:1.45; }
+  .role-photo img{ width:100%; height:100%; object-fit:cover; object-position:center; }
+  .role-card.lead .role-photo img,
+  .role-card.vice .role-photo img{ object-position:center top; }
+  .role-card .badge{
+    width:38px; height:38px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:14px;
+  }
+  .role-card.lead .badge{ background:linear-gradient(135deg,var(--red),var(--red-deep)); }
+  .role-card.secy .badge{ background:linear-gradient(135deg,var(--red),var(--red-deep)); }
+  .role-card.vice .badge{ background:linear-gradient(135deg,var(--jade),#0b6a60); }
+  .role-card.member .badge{ background:linear-gradient(135deg,var(--blue),var(--blue-deep)); }
+  .role-card .badge svg{ width:18px; height:18px; stroke:#fff; }
+  .role-card .role{
+    font-size:0.7rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--ink-soft);
+    margin-bottom:4px;
+  }
+  .role-card .name{
+    font-family:var(--f-display); font-weight:700;
+    font-size:1.15rem; color:var(--ink);
+  }
+  .roster.organized{ display:block; }
+  .organization-group + .organization-group{ margin-top:32px; }
+  .organization-heading{
+    display:flex; align-items:center; gap:12px;
+    margin:0 0 16px;
+    font-family:var(--f-display); font-size:1.15rem; color:var(--ink);
+  }
+  .organization-heading::before{
+    content:""; width:10px; height:10px; flex:none;
+    border-radius:50%; background:var(--red);
+    box-shadow:0 0 0 5px rgba(216,39,88,.12);
+  }
+  .organization-group.youth .organization-heading::before{ background:var(--blue); box-shadow:0 0 0 5px rgba(19,89,184,.12); }
+  .organization-heading::after{ content:""; height:1px; flex:1; background:var(--paper-line); }
+  .roster-list{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:16px; }
+  .organization-group.team .roster-list{ grid-template-columns:minmax(220px, 280px); }
+  .organization-group.team{
+    display:grid;
+    grid-template-columns:minmax(220px, 280px) minmax(0, 1fr);
+    column-gap:24px;
+    align-items:stretch;
+  }
+  .organization-group.team .organization-heading{ grid-column:1 / -1; }
+  .organization-group.team .roster-list{ grid-column:1; }
+  .organization-group.team .squad-overview{ grid-column:2; margin-top:0; }
+  .squad-overview{
+    display:grid; grid-template-columns:minmax(240px, .85fr) minmax(0, 1.15fr);
+    gap:24px; align-items:center; margin-top:22px; padding:16px;
+    background:linear-gradient(135deg, #F7FBFF, #E6F1FF);
+    border:1px solid var(--paper-line); border-radius:var(--radius-m);
+  }
+  .squad-overview img{ width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; }
+  .squad-overview h4{ font-family:var(--f-display); font-size:1.25rem; margin:0 0 8px; color:var(--ink); }
+  .squad-overview p{ margin:0; color:var(--ink-soft); line-height:1.65; font-size:.95rem; }
+  @media (max-width:700px){
+    .roster-list{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; }
+    .organization-group.team .roster-list{ grid-template-columns:minmax(0, 1fr); }
+    .organization-group.team{ display:block; }
+    .organization-group.team .squad-overview{ margin-top:16px; }
+    .squad-overview{ grid-template-columns:1fr; gap:16px; }
+  }
+  @media (max-width:420px){ .roster-list{ grid-template-columns:1fr; } }
+
+  /* ============ VĂN NGHỆ ============ */
+  .vn-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+  @media (max-width:760px){ .vn-grid{ grid-template-columns:1fr; } }
+  .vn-card{
+    background:#fff;
+    border-radius:var(--radius-l);
+    padding:28px 26px;
+    border:1px solid var(--paper-line);
+    box-shadow:var(--shadow-card);
+    position:relative;
+    overflow:hidden;
+  }
+  .vn-card::before{
+    content:"";
+    position:absolute; inset:0 0 auto 0; height:6px;
+  }
+  .vn-card.lien-khuc::before{ background:linear-gradient(90deg,var(--red),var(--gold),var(--blue),var(--jade)); }
+  .vn-card h3{
+    font-family:var(--f-display); font-weight:700;
+    font-size:1.15rem; margin:10px 0 18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .vn-card ol{
+    margin:0; padding:0; list-style:none;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .vn-card li{
+    display:flex; align-items:flex-start; gap:12px;
+    font-size:0.98rem; line-height:1.5;
+    color:var(--ink);
+  }
+  .vn-card li .n{
+    font-family:var(--f-display); font-weight:700;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    flex:none;
+    width:22px;
+  }
+
+  /* ============ ĐỘI BÓNG ============ */
+  .team-photo-wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:32px;
+    align-items:center;
+  }
+  @media (max-width:800px){ .team-photo-wrap{ grid-template-columns:1fr; } }
+  .photo-frame{
+    background:#fff;
+    padding:14px 14px 46px;
+    border-radius:var(--radius-m);
+    box-shadow:var(--shadow-card);
+    border:1px solid var(--paper-line);
+    position:relative;
+  }
+  .photo-frame .cap{
+    position:absolute; bottom:14px; left:14px; right:14px;
+    text-align:center;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    letter-spacing:0.02em;
+  }
+  .photo-slot{
+    aspect-ratio:4/3;
+    border-radius:8px;
+    background:
+      repeating-linear-gradient(45deg, #F5FAFF, #F5FAFF 10px, #E2EFFF 10px, #E2EFFF 20px);
+    border:2px dashed var(--paper-line);
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column;
+    gap:10px;
+    color:var(--ink-soft);
+    text-align:center;
+    padding:20px;
+  }
+  .photo-slot svg{ width:44px; height:44px; opacity:0.55; }
+  .photo-slot .hint{ font-size:0.78rem; max-width:26ch; line-height:1.5; }
+  .team-photo{
+    display:block;
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    border-radius:8px;
+  }
+  .team-copy h3{
+    font-family:var(--f-display); font-weight:700;
+    font-size:1.3rem; margin:0 0 12px;
+  }
+  .team-copy p{
+    color:var(--ink-soft); line-height:1.7; font-size:0.98rem;
+    margin:0 0 18px;
+  }
+  .team-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .team-tags span{
+    background:var(--paper-deep);
+    border:1px solid var(--paper-line);
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:0.76rem;
+    color:var(--ink-soft);
+    font-weight:600;
+  }
+  .content-carousel{ position:relative; min-width:0; }
+  .carousel-viewport{ overflow:hidden; border-radius:var(--radius-m); }
+  .carousel-track{ display:block; }
+  .carousel-slide{ display:none; min-width:0; }
+  .carousel-slide.is-active{ display:block; animation:slide-in .45s ease; }
+  .content-carousel .slider-btn{ top:50%; }
+  .content-carousel .slider-dots{ bottom:12px; }
+  .content-carousel .slide-count{
+    position:absolute; right:12px; top:12px; z-index:2;
+    padding:4px 9px; border-radius:999px;
+    background:rgba(11,47,107,.78); color:#fff;
+    font-size:.7rem; font-weight:700;
+  }
+  .team-carousel .photo-frame{ margin:0; }
+  .team-carousel .team-photo{ aspect-ratio:4/3; }
+
+  /* ============ SỰ ĐỒNG HÀNH ============ */
+  .community-support{
+    display:block;
+  }
+  .support-copy{
+    padding:0;
+  }
+  .community-support h3{
+    font-family:var(--f-display);
+    font-size:clamp(1.3rem, 2.4vw, 1.8rem);
+    margin:0 0 10px;
+    color:var(--ink);
+  }
+  .community-support p{
+    max-width:70ch;
+    margin:0;
+    color:var(--ink-soft);
+    font-size:1.02rem;
+    line-height:1.72;
+  }
+  .support-timeline{
+    list-style:none;
+    position:relative;
+    margin:32px 0 0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:54px;
+  }
+  .support-timeline::before{
+    content:"";
+    position:absolute;
+    top:18px;
+    bottom:18px;
+    left:50%;
+    width:0;
+    transform:translateX(-50%);
+    border-left:2px dashed #9EC6F4;
+    z-index:0;
+  }
+  .support-timeline::after{
+    content:"";
+    position:absolute;
+    top:18px;
+    left:50%;
+    width:0;
+    height:0;
+    transform:translateX(-50%);
+    border-left:2px solid var(--red);
+    transition:height 1.2s ease-out;
+    z-index:0;
+  }
+  html.has-js .support-timeline.timeline-active::after{ height:var(--line-height, 0px); }
+  html.has-js .support-timeline li{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .55s ease-out, transform .55s ease-out;
+  }
+  html.has-js .support-timeline li:nth-child(even){ transform:translateY(28px); }
+  html.has-js .support-timeline li.is-visible{ opacity:1; transform:translateY(0); }
+  .support-timeline li{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) 68px minmax(0, 1fr);
+    gap:26px;
+    align-items:center;
+    position:relative;
+    z-index:1;
+  }
+  .milestone-photo .img-slot{
+    aspect-ratio:4/3;
+    border-radius:var(--radius-m);
+    box-shadow:var(--shadow-card);
+  }
+  .milestone-slider{ position:relative; aspect-ratio:4/3; overflow:hidden; border-radius:var(--radius-m); box-shadow:var(--shadow-card); background:var(--paper-line); }
+  .milestone-slider .slides{ height:100%; }
+  .milestone-slider .slide{ display:none; width:100%; height:100%; }
+  .milestone-slider .slide.is-active{ display:block; animation:slide-in .45s ease; }
+  .milestone-slider img{ width:100%; height:100%; object-fit:cover; }
+  .milestone-slider .slide-count{ position:absolute; right:12px; top:12px; z-index:2; padding:4px 9px; border-radius:999px; background:rgba(11,47,107,.78); color:#fff; font-size:.7rem; font-weight:700; }
+  .slider-btn{ position:absolute; z-index:2; top:50%; transform:translateY(-50%); width:34px; height:34px; border:0; border-radius:50%; cursor:pointer; background:rgba(255,255,255,.9); color:var(--blue-deep); box-shadow:0 3px 10px rgba(19,33,59,.18); font-size:1.35rem; line-height:1; }
+  .slider-btn:hover{ background:#fff; }
+  .slider-btn.prev{ left:10px; } .slider-btn.next{ right:10px; }
+  .slider-dots{ position:absolute; z-index:2; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:6px; }
+  .slider-dot{ width:7px; height:7px; padding:0; border:0; border-radius:50%; cursor:pointer; background:rgba(255,255,255,.65); }
+  .slider-dot.is-active{ width:20px; border-radius:99px; background:#fff; }
+  @keyframes slide-in{ from{ opacity:.35; transform:scale(1.025); } to{ opacity:1; transform:scale(1); } }
+  .support-timeline .milestone-photo{ grid-column:1; }
+  .support-timeline .step{
+    grid-column:2;
+    grid-row:1;
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:#F7FBFF;
+    border:2px solid var(--red);
+    color:var(--red-deep);
+    font-family:var(--f-display);
+    font-size:.76rem;
+    font-weight:700;
+    margin:0;
+    box-shadow:0 0 0 6px var(--paper-deep);
+  }
+  .support-timeline p{
+    grid-column:3;
+    margin:0;
+    padding:24px;
+    background:#FFFFFF;
+    border:1px solid var(--paper-line);
+    border-radius:var(--radius-m);
+    box-shadow:var(--shadow-card);
+  }
+  .support-timeline li:nth-child(even) .milestone-photo{ grid-column:3; }
+  .support-timeline li:nth-child(even) p{ grid-column:1; grid-row:1; }
+  .support-timeline strong{ color:var(--ink); }
+  @media (prefers-reduced-motion:reduce){
+    .support-timeline::after,
+    html.has-js .support-timeline li{ transition:none; }
+  }
+  @media (max-width:560px){
+    .support-timeline{ gap:30px; padding-left:52px; }
+    .support-timeline::before{ left:17px; transform:none; }
+    .support-timeline::after{ left:17px; transform:none; }
+    .support-timeline li{ grid-template-columns:1fr; gap:14px; }
+    .support-timeline .milestone-photo,
+    .support-timeline li:nth-child(even) .milestone-photo{ grid-column:1; grid-row:1; }
+    .support-timeline .step{ grid-column:1; grid-row:1; position:absolute; left:-52px; top:20px; }
+    .support-timeline p,
+    .support-timeline li:nth-child(even) p{ grid-column:1; grid-row:2; padding:18px; }
+  }
+  @media (max-width:700px){
+    .support-timeline{ padding-left:0; gap:32px; }
+    .support-timeline::before,
+    .support-timeline::after{ left:20px; }
+    .support-timeline li{
+      display:block;
+      padding-left:54px;
+    }
+    .support-timeline .milestone-photo,
+    .support-timeline li:nth-child(even) .milestone-photo{
+      display:block;
+      width:100%;
+    }
+    .support-timeline .step{
+      position:absolute;
+      left:4px;
+      top:16px;
+      width:32px;
+      height:32px;
+      margin:0;
+      box-shadow:0 0 0 4px var(--paper-deep);
+    }
+    .support-timeline p,
+    .support-timeline li:nth-child(even) p{
+      display:block;
+      margin:14px 0 0;
+      padding:16px;
+    }
+  }
+
+  /* ============ HOẠT ĐỘNG NỔI BẬT ============ */
+  .activity-stories{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:22px;
+    counter-reset:activity;
+  }
+  .activity-story{
+    counter-increment:activity;
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+    background:#fff;
+    border:1px solid var(--paper-line);
+    border-radius:var(--radius-m);
+    overflow:hidden;
+    box-shadow:var(--shadow-card);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .activity-story:hover{ transform:translateY(-4px); box-shadow:0 18px 32px -16px rgba(19,33,59,.3); }
+  .activity-story.reverse .story-media,
+  .activity-story.reverse .story-copy{ order:initial; }
+  .story-media .img-slot{
+    min-height:0;
+    aspect-ratio:16/10;
+    border:0;
+    border-radius:0;
+    background:linear-gradient(135deg, #EAF5FF, #D8ECFF);
+  }
+  .story-media .img-real{
+    width:100%;
+    aspect-ratio:16/10;
+    object-fit:cover;
+    border-radius:0;
+  }
+  .story-copy h3{
+    font-family:var(--f-display);
+    font-size:clamp(1.25rem, 2.2vw, 1.55rem);
+    line-height:1.15;
+    margin:0 0 9px;
+    color:var(--ink);
+  }
+  .story-copy{
+    position:relative;
+    padding:22px 22px 24px;
+  }
+  .story-copy::before{
+    content:"0" counter(activity);
+    position:absolute;
+    top:-19px; right:18px;
+    display:grid; place-items:center;
+    width:40px; height:40px;
+    border-radius:50%;
+    background:var(--red);
+    color:#fff;
+    border:4px solid #fff;
+    font-family:var(--f-display); font-size:.72rem; font-weight:800;
+  }
+  .activity-story:nth-child(2) .story-copy::before{ background:var(--blue); }
+  .activity-story:nth-child(3) .story-copy::before{ background:var(--jade); }
+  .activity-story:nth-child(4) .story-copy::before{ background:var(--gold); color:var(--red-deep); }
+  .story-copy p{
+    font-size:.94rem;
+    line-height:1.65;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  .activity-image-carousel,
+  .activity-image-carousel .carousel-viewport{ height:100%; border-radius:0; }
+  .activity-image-carousel img{
+    display:block; width:100%; aspect-ratio:16/10;
+    object-fit:cover;
+  }
+  .activity-image-carousel img.activity-portrait-focus{ object-position:center 73%; }
+  @media (max-width:760px){
+    .activity-stories{ grid-template-columns:1fr; gap:18px; }
+    .activity-story:hover{ transform:none; }
+  }
+
+  /* ============ VIDEO HOẠT ĐỘNG ============ */
+  .video-feature{
+    display:block;
+    margin-bottom:0;
+  }
+  .video-frame{
+    background:#fff;
+    padding:16px;
+    border-radius:var(--radius-m);
+    box-shadow:var(--shadow-card);
+    border:1px solid var(--paper-line);
+  }
+  .video-frame video{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:8px;
+    background:var(--ink);
+  }
+  .video-copy h3{
+    font-family:var(--f-display); font-weight:700;
+    font-size:1.3rem; margin:0 0 12px;
+  }
+  .video-copy{
+    max-width:70ch;
+    margin:24px auto 0;
+    text-align:center;
+  }
+  .video-copy p{ color:var(--ink-soft); line-height:1.7; font-size:1.02rem; margin:0; }
+
+  /* ============ CTA sang trang 2 ============ */
+  .to-wallpaper{
+    margin:8px 0 0;
+    background:linear-gradient(135deg, var(--blue-deep), var(--blue) 55%, var(--jade));
+    border-radius:var(--radius-l);
+    padding:44px 36px;
+    color:#fff;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+    position:relative;
+    overflow:hidden;
+  }
+  .to-wallpaper::after{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 85% 20%, rgba(79,169,255,0.35), transparent 55%);
+  }
+  .to-wallpaper .txt{ position:relative; z-index:1; max-width:44ch; }
+  .to-wallpaper h3{
+    font-family:var(--f-display); font-weight:700;
+    font-size:clamp(1.2rem,2.4vw,1.6rem);
+    margin:0 0 8px;
+  }
+  .to-wallpaper p{ margin:0; opacity:0.85; font-size:0.92rem; line-height:1.6; }
+  .to-wallpaper .btn{
+    position:relative; z-index:1;
+    background:var(--gold);
+    color:var(--red-deep);
+    font-weight:700;
+    font-size:0.92rem;
+    text-decoration:none;
+    padding:14px 26px;
+    border-radius:999px;
+    white-space:nowrap;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow:0 8px 20px -8px rgba(228,164,49,0.7);
+  }
+  .to-wallpaper .btn:hover{ transform:translateY(-2px); }
+
+  /* ============ TRẢI NGHIỆM ĐIỆN THOẠI ============ */
+  @media (max-width:600px){
+    .intro-hero{ padding:34px 0 38px; }
+    .hero-layout{ gap:24px; }
+    .hero-copy{ text-align:center; }
+    .intro-hero h1{ max-width:none; font-size:clamp(2rem, 10vw, 2.6rem); }
+    .intro-hero .lede{ font-size:.98rem; line-height:1.62; margin-bottom:24px; }
+    .eyebrow{ margin-bottom:16px; font-size:.69rem; padding:6px 11px; }
+    .hero-stats{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:9px; }
+    .stat-pill{ min-width:0; padding:13px 10px; border-radius:14px; }
+    .hero-stats .stat-pill:first-child{
+      grid-column:1 / -1;
+      padding:17px 12px;
+    }
+    .hero-stats .stat-pill:first-child .num{ font-size:2.1rem; }
+    .stat-pill .num{ font-size:1.55rem; }
+    .stat-pill .lbl{ font-size:.62rem; margin-top:4px; }
+    .hero-group-photo{
+      width:100vw;
+      max-width:none;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
+    }
+    .hero-group-photo img{
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      object-position:center;
+      border-radius:0;
+    }
+
+    section.block{ padding:40px 0; }
+    .section-head{ align-items:flex-start; gap:10px; margin-bottom:22px; }
+    .section-head .idx{ width:30px; height:30px; font-size:.75rem; margin-top:1px; }
+    .section-head h2{ font-size:1.3rem; line-height:1.25; }
+    .section-head .rule{ display:none; }
+    .role-card{ padding:16px; }
+    .vn-card{ padding:20px 18px; border-radius:20px; }
+    .team-photo-wrap{ gap:22px; }
+    .photo-frame{ padding:10px 10px 42px; }
+    .team-copy h3{ font-size:1.2rem; }
+    .team-tags{ gap:6px; }
+    .team-tags span{ padding:6px 10px; font-size:.72rem; }
+    .team-copy p, .community-support p, .story-copy p{ font-size:.95rem; line-height:1.65; }
+
+    .support-timeline{ margin-top:24px; padding-left:0; gap:32px; }
+    .support-timeline li{ padding-left:48px; }
+    .support-timeline::before, .support-timeline::after{ left:20px; }
+    .support-timeline .step{ left:4px; top:16px; width:32px; height:32px; box-shadow:0 0 0 4px var(--paper-deep); }
+    .milestone-slider{ border-radius:14px; touch-action:pan-y; }
+    .slider-btn{ width:44px; height:44px; font-size:1.6rem; background:rgba(255,255,255,.94); }
+    .slider-btn.prev{ left:7px; } .slider-btn.next{ right:7px; }
+    .slider-dots{ bottom:8px; gap:7px; }
+    .slider-dot{ width:10px; height:10px; }
+    .slider-dot.is-active{ width:24px; }
+    .milestone-slider .slide-count{ top:8px; right:8px; }
+    .support-timeline p, .support-timeline li:nth-child(even) p{ padding:16px; border-radius:14px; }
+
+    .activity-stories{ gap:18px; }
+    .activity-story, .activity-story.reverse{ gap:0; }
+    .story-copy h3{ font-size:1.45rem; margin-bottom:8px; }
+    .video-frame{ padding:10px; }
+    .video-frame video{ border-radius:10px; }
+    .video-copy{ margin-top:18px; }
+    .gallery{ gap:8px; }
+    .to-wallpaper{ margin:0; padding:28px 22px; border-radius:22px; gap:18px; }
+    .to-wallpaper .btn{ width:100%; justify-content:center; min-height:48px; }
+  }
+
+  @media (max-width:390px){
+    .heritage-strip{ column-gap:4px; row-gap:10px; }
+    .heritage-emblem img{ width:46px; height:46px; }
+    .national-flag{ width:50px; height:30px; }
+    .portrait-bac{ width:50px; height:50px; }
+    .gate-nameplate .gate-event{ font-size:.9rem; }
+    .gate-nameplate span{ letter-spacing:.045em; }
+    .intro-hero h1{ font-size:clamp(1.85rem, 9vw, 2.25rem); }
+    .stat-pill{ padding:12px 8px; }
+    .story-copy{ padding:20px 18px 22px; }
+    .video-frame{ padding:8px; }
+  }
+</style>
+</head>
+<body id="top" class="paper-texture">
+
+<nav class="wayfinding camp-header">
+  <div class="container">
+    <div class="heritage-strip" aria-label="Biểu tượng nhận diện cổng trại">
+      <div class="heritage-emblem">
+        <img src="assets/header/huy-hieu-doan.png" alt="Huy hiệu Đoàn Thanh niên">
+      </div>
+      <div class="heritage-center">
+        <img class="national-flag" src="assets/header/co-to-quoc.png" alt="Cờ Tổ quốc Việt Nam">
+        <div class="portrait-bac" role="img" aria-label="Ảnh Chủ tịch Hồ Chí Minh">
+          <img src="assets/header/anh-bac.jpg" alt="Chân dung Chủ tịch Hồ Chí Minh">
+        </div>
+      </div>
+      <div class="heritage-emblem">
+        <img src="assets/header/huy-hieu-doi.png" alt="Huy hiệu Đội Thiếu niên Tiền phong Hồ Chí Minh">
+      </div>
+      <div class="gate-nameplate">
+        <b class="gate-event">HỘI TRẠI HÈ 2026</b>
+        <span>CHI ĐỘI: LÝ TỰ TRỌNG</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="intro-hero">
+  <svg class="hero-glyph" viewBox="0 0 400 400" fill="none">
+    <circle cx="330" cy="70" r="130" fill="#45C8FF" opacity="0.18"/>
+    <circle cx="220" cy="230" r="90" fill="#D82758" opacity="0.08"/>
+    <path d="M280 40 C 260 90, 260 130, 300 160" stroke="#1359B8" stroke-width="2" opacity="0.25" fill="none"/>
+  </svg>
+  <div class="container hero-layout">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot"></span>Hội trại hè thiếu nhi Tân Tiến 2026</span>
+      <h1>Chi đội <span>Lý Tự Trọng</span> — Thôn 5</h1>
+      <p class="lede">Đây là chân dung của một tập thể: 66 con người, những cái tên, những hoạt động và tinh thần đoàn kết đã làm nên Chi đội Lý Tự Trọng tại Hội trại hè thiếu nhi Tân Tiến năm nay.</p>
+      <div class="hero-stats">
+        <div class="stat-pill">
+          <div class="num">66</div>
+          <div class="lbl">Đội viên</div>
+        </div>
+        <div class="stat-pill">
+          <div class="num">31</div>
+          <div class="lbl">Nam</div>
+        </div>
+        <div class="stat-pill jade">
+          <div class="num">35</div>
+          <div class="lbl">Nữ</div>
+        </div>
+        <div class="stat-pill blue">
+          <div class="num">2</div>
+          <div class="lbl">Tiết mục văn nghệ</div>
+        </div>
+      </div>
+    </div>
+    <figure class="hero-group-photo">
+      <img src="assets/chi-doi-nhom.jpg" alt="Ảnh tập thể Chi đội Lý Tự Trọng, Thôn 5">
+    </figure>
+  </div>
+</header>
+
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <span class="idx">01</span>
+      <h2>Ban cán sự chi đội</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="roster">
+      <div class="role-card lead">
+        <div class="role-photo">
+          <img src="assets/ban-can-su/4.jpg" alt="Mai Sỹ Đức, Chi đội trưởng">
+        </div>
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.6 6.2 6.7.6-5.1 4.4 1.6 6.6L12 16.3 6.2 19.8l1.6-6.6L2.7 8.8l6.7-.6L12 2z"/></svg></div>
+        <div class="role">Chi đội trưởng</div>
+        <div class="name">Mai Sỹ Đức</div>
+      </div>
+      <div class="role-card secy">
+        <div class="role-photo">
+          <img src="assets/ban-can-su/1.jpg" alt="Phan Thị Quỳnh, Bí thư Đoàn Thanh niên">
+        </div>
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <div class="role">Bí thư Đoàn Thanh niên</div>
+        <div class="name">Phan Thị Quỳnh</div>
+      </div>
+      <div class="role-card vice">
+        <div class="role-photo">
+          <img src="assets/ban-can-su/2.jpg" alt="Phạm Ngọc Linh, Phó bí thư Đoàn Thanh niên">
+        </div>
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
+        <div class="role">Phó bí thư Đoàn Thanh niên</div>
+        <div class="name">Phạm Ngọc Linh</div>
+      </div>
+      <div class="role-card member">
+        <div class="role-photo">
+          <img src="assets/ban-can-su/3.jpg" alt="Vũ Thị Bình An, Ủy viên">
+        </div>
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <div class="role">Ủy viên</div>
+        <div class="name">Vũ Thị Bình An</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="idx">02</span>
+      <h2>Tiết mục văn nghệ</h2>
+      <span class="rule"></span>
+    </div>
+    <p style="color:var(--ink-soft); line-height:1.65; margin:-10px 0 24px;">Thôn 5 tham gia Hội trại với 2 tiết mục văn nghệ: một liên khúc do khối thiếu niên thể hiện và một liên khúc do khối thanh niên thể hiện.</p>
+    <div class="vn-grid">
+      <div class="vn-card lien-khuc">
+        <h3>🧡 Tiết mục thiếu niên — Liên khúc</h3>
+        <ol>
+          <li><span class="n">01</span>Măng non xứng danh Bác Hồ</li>
+          <li><span class="n">02</span>Ai yêu Bác Hồ Chí Minh hơn thiếu niên nhi đồng</li>
+          <li><span class="n">03</span>Em là mầm non của Đảng</li>
+        </ol>
+      </div>
+      <div class="vn-card lien-khuc">
+        <h3>💙 Tiết mục thanh niên — Liên khúc</h3>
+        <ol>
+          <li><span class="n">01</span>Đường lên phía trước</li>
+          <li><span class="n">02</span>Viết tiếp câu chuyện hòa bình</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <span class="idx">03</span>
+      <h2>Đội bóng thiếu niên</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="team-photo-wrap">
+      <div class="photo-frame">
+        <img class="team-photo" src="assets/doi-bong.jpg" alt="Đội bóng thiếu niên Chi đội Lý Tự Trọng">
+        <div class="cap">Đội bóng thiếu niên · Chi đội Lý Tự Trọng, Thôn 5</div>
+      </div>
+      <div class="team-copy">
+        <h3>Tinh thần thể thao, tinh thần đồng đội</h3>
+        <p>Bên cạnh học tập và văn nghệ, đội bóng thiếu niên của chi đội là nơi các bạn nhỏ rèn luyện sức khỏe, sự đoàn kết và tinh thần fair-play — góp phần làm nên một chi đội toàn diện tại Hội trại hè thiếu nhi Tân Tiến.</p>
+        <div class="team-tags">
+          <span>Rèn luyện thể chất</span>
+          <span>Đoàn kết</span>
+          <span>Fair-play</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <span class="idx">04</span>
+      <h2>Tinh thần đoàn kết, đồng lòng của nhân dân Thôn 5</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="community-support">
+      <div class="support-copy">
+        <h3>Có mặt trong từng khoảnh khắc</h3>
+        <p>Hội trại không chỉ là câu chuyện của các em thiếu nhi. Đó còn là sự góp sức ân cần của bà con làng xóm và các anh chị thanh niên.</p>
+        <ol class="support-timeline">
+          <li><div class="milestone-photo"><div class="img-slot"><div class="hint"><code>assets/dong-hanh/1.jpg</code></div></div></div><span class="step">01</span><p><strong>Bà con ghé sân</strong> xem các em tập luyện, động viên từng động tác nhỏ.</p></li>
+          <li><div class="milestone-photo"><div class="img-slot"><div class="hint"><code>assets/dong-hanh/2.jpg</code></div></div></div><span class="step">02</span><p><strong>Tiếng cổ vũ bên sân bóng</strong> tiếp thêm tự tin cho đội bóng thiếu niên.</p></li>
+          <li><div class="milestone-photo"><div class="img-slot"><div class="hint"><code>assets/dong-hanh/3.jpg</code></div></div></div><span class="step">03</span><p><strong>Anh chị thanh niên dựng cổng trại,</strong> góp từng đôi tay cho ngày hội của các em.</p></li>
+          <li><div class="milestone-photo"><div class="img-slot"><div class="hint"><code>assets/dong-hanh/4.jpg</code></div></div></div><span class="step">04</span><p><strong>Những bữa cơm được cùng nhau chuẩn bị,</strong> để các em luôn đủ đầy trong ngày hội.</p></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="idx">05</span>
+      <h2>Hoạt động nổi bật</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="activity-stories">
+      <article class="activity-story">
+        <div class="story-media"><div class="img-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21v-8a8 8 0 0 0-16 0v8"/></svg><div class="hint"><code>assets/hoat-dong/sinh-hoat-doi.jpg</code></div></div></div>
+        <div class="story-copy"><h3>Sinh hoạt Đội</h3><p>Những buổi sinh hoạt Đội là nơi các đội viên Thôn 5 gặp gỡ, cùng học, cùng chơi và lớn lên trong tinh thần đoàn kết.</p></div>
+      </article>
+      <article class="activity-story reverse">
+        <div class="story-media"><div class="img-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/></svg><div class="hint"><code>assets/hoat-dong/hoc-tap.jpg</code></div></div></div>
+        <div class="story-copy"><h3>Học tập</h3><p>Từ những giờ học trên lớp đến các buổi cùng nhau ôn bài, mỗi đội viên đều góp nhặt kiến thức và sự tự tin cho hành trình phía trước.</p></div>
+      </article>
+      <article class="activity-story">
+        <div class="story-media"><div class="img-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 21h16"/><path d="M6 21V9l6-5 6 5v12"/></svg><div class="hint"><code>assets/hoat-dong/ve-sinh-moi-truong.jpg</code></div></div></div>
+        <div class="story-copy"><h3>Vệ sinh môi trường</h3><p>Các bạn nhỏ cùng chăm chút từng góc sân, con đường và không gian chung bằng những việc làm giản dị nhưng đầy trách nhiệm.</p></div>
+      </article>
+      <article class="activity-story reverse">
+        <div class="story-media"><div class="img-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18V6l10 6z"/></svg><div class="hint"><code>assets/hoat-dong/van-nghe.jpg</code></div></div></div>
+        <div class="story-copy"><h3>Văn nghệ</h3><p>Những giai điệu và vũ điệu rộn ràng là lời chào của Thôn 5 gửi đến Hội trại hè thiếu nhi Tân Tiến.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <span class="idx">06</span>
+      <h2>Video hoạt động</h2>
+      <span class="rule"></span>
+    </div>
+
+    <div class="video-feature">
+      <div class="video-frame">
+        <video controls preload="metadata">
+          <source src="assets/video/nhat-ky-chi-doi.mp4" type="video/mp4">
+          Trình duyệt của bạn không hỗ trợ phát video HTML5.
+        </video>
+      </div>
+      <div class="video-copy">
+        <h3>Nhật ký Chi đội Lý Tự Trọng</h3>
+        <p>Phóng sự ngắn ghi lại hành trình học tập, rèn luyện và chuẩn bị Hội trại hè thiếu nhi Tân Tiến 2026 của thanh thiếu niên Thôn 5.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="idx">07</span>
+      <h2>Album ảnh Chi đội</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="gallery">
+      <div class="cell"><img class="img-real" src="assets/album/1.jpg" alt="Ảnh hoạt động Chi đội 1"></div>
+      <div class="cell"><img class="img-real" src="assets/album/2.jpg" alt="Ảnh hoạt động Chi đội 2"></div>
+      <div class="cell"><img class="img-real" src="assets/album/3.jpg" alt="Ảnh hoạt động Chi đội 3"></div>
+      <div class="cell"><img class="img-real" src="assets/album/4.jpg" alt="Ảnh hoạt động Chi đội 4"></div>
+      <div class="cell"><img class="img-real" src="assets/album/5.jpg" alt="Ảnh hoạt động Chi đội 5"></div>
+      <div class="cell"><img class="img-real" src="assets/album/6.jpg" alt="Ảnh hoạt động Chi đội 6"></div>
+      <div class="cell"><img class="img-real" src="assets/album/7.jpg" alt="Ảnh hoạt động Chi đội 7"></div>
+      <div class="cell"><img class="img-real" src="assets/album/8.jpg" alt="Ảnh hoạt động Chi đội 8"></div>
+      <div class="cell"><img class="img-real" src="assets/album/9.jpg" alt="Ảnh hoạt động Chi đội 9"></div>
+      <div class="cell"><img class="img-real" src="assets/album/10.jpg" alt="Ảnh hoạt động Chi đội 10"></div>
+      <div class="cell"><img class="img-real" src="assets/album/11.jpg" alt="Ảnh hoạt động Chi đội 11"></div>
+      <div class="cell"><img class="img-real" src="assets/album/12.jpg" alt="Ảnh hoạt động Chi đội 12"></div>
+    </div>
+    <!-- Thêm ảnh: đặt file vào assets/album/, thêm 1 <div class="cell"> mới,
+         thay img-slot bằng <img class="img-real" src="assets/album/xx.jpg" alt="..."> -->
+  </div>
+</section>
+
+<!-- Thành tích / dấu ấn: sẽ thêm khi có thông tin cụ thể từ chi đội -->
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="slogan">KHÁT VỌNG – TRI THỨC – SÁNG TẠO – CHUYỂN ĐỔI SỐ</p>
+    <div class="footer-bottom">
+      <p>Thôn 5 · Chi đội Lý Tự Trọng · Hội trại hè thiếu nhi Tân Tiến</p>
+      <a class="back-to-top" href="#top" aria-label="Lên đầu trang">
+        <span>Lên đầu trang</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('has-js');
+  const revealItems = [...document.querySelectorAll('section.block .container')];
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  revealItems.forEach((item) => item.classList.add('reveal'));
+  if ('IntersectionObserver' in window && !reducedMotion) {
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold:0.12, rootMargin:'0px 0px -24px' });
+    revealItems.forEach((item) => revealOnScroll.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+  }
+
+  const timeline = document.querySelector('.support-timeline');
+  if (timeline && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let lineHeight = 0;
+    const revealMilestone = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        timeline.classList.add('timeline-active');
+        entry.target.classList.add('is-visible');
+        lineHeight = Math.max(lineHeight, entry.target.offsetTop + entry.target.offsetHeight / 2 - 18);
+        timeline.style.setProperty('--line-height', `${lineHeight}px`);
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.28 });
+    timeline.querySelectorAll('li').forEach((item) => revealMilestone.observe(item));
+  } else if (timeline) {
+    timeline.querySelectorAll('li').forEach((item) => item.classList.add('is-visible'));
+  }
+
+  // Mỗi dấu mốc có thể chứa nhiều ảnh: chỉ cần thêm tên file vào mảng tương ứng.
+  const milestoneImages = [
+    ['4.1.1.jpg', '4.1.2.jpg', '4.1.3.jpg'],
+    ['4.2.1.jpg', '4.2.2.jpg', '4.2.3.jpg', '4.2.4.jpg', '4.2.5.jpg', '4.2.6.jpg','4.2.7.jpg'],
+    ['4.3.1.jpg', '4.3.2.jpg', '4.3.3.jpg'],
+    ['4.1.jpg', '4.2.jpg', '4.3.jpg', '4.4.jpg']
+  ];
+  document.querySelectorAll('.support-timeline .milestone-photo').forEach((photo, milestoneIndex) => {
+    const images = milestoneImages[milestoneIndex] || [];
+    if (!images.length) return;
+    const slider = document.createElement('div');
+    slider.className = 'milestone-slider';
+    slider.setAttribute('aria-label', `Album ảnh dấu mốc ${milestoneIndex + 1}`);
+    const slidesWrap = document.createElement('div');
+    slidesWrap.className = 'slides';
+    images.forEach((fileName, index) => {
+      const slide = document.createElement('div');
+      slide.className = `slide${index === 0 ? ' is-active' : ''}`;
+      const image = document.createElement('img');
+      image.src = `assets/dong-hanh/${fileName}`;
+      image.alt = `Khoảnh khắc dấu mốc ${milestoneIndex + 1}, ảnh ${index + 1}`;
+      slide.append(image);
+      slidesWrap.append(slide);
+    });
+    slider.append(slidesWrap);
+    photo.replaceChildren(slider);
+    if (images.length < 2) return;
+
+    let activeIndex = 0;
+    const slides = [...slidesWrap.children];
+    const counter = document.createElement('span');
+    counter.className = 'slide-count';
+    const dots = document.createElement('div');
+    dots.className = 'slider-dots';
+    const showSlide = (index) => {
+      activeIndex = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('is-active', i === activeIndex));
+      [...dots.children].forEach((dot, i) => dot.classList.toggle('is-active', i === activeIndex));
+      counter.textContent = `${activeIndex + 1} / ${slides.length}`;
+    };
+    [['prev', '‹', -1], ['next', '›', 1]].forEach(([className, label, direction]) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = `slider-btn ${className}`;
+      button.setAttribute('aria-label', direction < 0 ? 'Ảnh trước' : 'Ảnh tiếp theo');
+      button.textContent = label;
+      button.addEventListener('click', () => showSlide(activeIndex + direction));
+      slider.append(button);
+    });
+    slides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'slider-dot';
+      dot.setAttribute('aria-label', `Xem ảnh ${index + 1}`);
+      dot.addEventListener('click', () => showSlide(index));
+      dots.append(dot);
+    });
+    slider.append(counter, dots);
+    showSlide(0);
+    let touchStartX = 0;
+    slider.addEventListener('touchstart', (event) => { touchStartX = event.changedTouches[0].screenX; }, { passive:true });
+    slider.addEventListener('touchend', (event) => {
+      const distance = event.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(distance) < 40) return;
+      showSlide(activeIndex + (distance < 0 ? 1 : -1));
+    }, { passive:true });
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let timer = setInterval(() => showSlide(activeIndex + 1), 3500);
+      slider.addEventListener('mouseenter', () => clearInterval(timer));
+      slider.addEventListener('mouseleave', () => { timer = setInterval(() => showSlide(activeIndex + 1), 3500); });
+    }
+  });
+
+  const heroStats = document.querySelector('.hero-stats');
+  if (heroStats) {
+    const statistics = [
+      ['66', 'Thành viên', ''],
+      ['31', 'Nam', 'jade'],
+      ['35', 'Nữ', 'blue']
+    ];
+    heroStats.replaceChildren(...statistics.map(([number, label, color]) => {
+      const stat = document.createElement('div');
+      stat.className = `stat-pill ${color}`.trim();
+      const value = document.createElement('div');
+      value.className = 'num';
+      value.textContent = number;
+      const caption = document.createElement('div');
+      caption.className = 'lbl';
+      caption.textContent = label;
+      stat.append(value, caption);
+      return stat;
+    }));
+    const lede = document.querySelector('.intro-hero .lede');
+    if (lede) lede.textContent = 'Với 66 thành viên gồm 31 nam và 35 nữ, Chi đội Lý Tự Trọng – Thôn 5 là một tập thể giàu nhiệt huyết, nơi mỗi đội viên cùng học tập, rèn luyện và sẻ chia. Bằng tinh thần đoàn kết, trách nhiệm và niềm vui tuổi thơ, các bạn cùng nhau tạo nên những khoảnh khắc đáng nhớ tại Hội trại hè thiếu nhi Tân Tiến 2026.';
+  }
+
+  const roster = document.querySelector('.roster');
+  if (roster) {
+    const cards = [...roster.children];
+    const groups = [
+      { className:'youth', title:'Đoàn Thanh niên', cards:cards.filter((card) => !card.classList.contains('lead')) },
+      { className:'team', title:'Chi đội', cards:cards.filter((card) => card.classList.contains('lead')), squadOverview:true }
+    ];
+    roster.replaceChildren();
+    groups.forEach((group) => {
+      const wrapper = document.createElement('section');
+      wrapper.className = `organization-group ${group.className}`;
+      const heading = document.createElement('h3');
+      heading.className = 'organization-heading';
+      heading.textContent = group.title;
+      const list = document.createElement('div');
+      list.className = 'roster-list';
+      group.cards.forEach((card) => list.append(card));
+      wrapper.append(heading, list);
+      if (group.squadOverview) {
+        const overview = document.createElement('div');
+        overview.className = 'squad-overview';
+        const image = document.createElement('img');
+        image.src = 'assets/hoat-dong/chi-doi-nhom.jpg';
+        image.alt = 'Ảnh chung của bốn phân đội Chi đội Lý Tự Trọng';
+        const copy = document.createElement('div');
+        const title = document.createElement('h4');
+        title.textContent = '4 phân đội – cùng một tập thể';
+        const description = document.createElement('p');
+        description.textContent = 'Chi đội có 4 phân đội, mỗi phân đội 15 thành viên, cùng đội nghi lễ gồm 6 thành viên. Các bạn cùng học tập, rèn luyện và hỗ trợ nhau trong mọi hoạt động.';
+        copy.append(title, description);
+        overview.append(image, copy);
+        wrapper.append(overview);
+      }
+      roster.append(wrapper);
+    });
+    roster.classList.add('organized');
+    const rosterTitle = roster.closest('.container')?.querySelector('.section-head h2');
+    if (rosterTitle) rosterTitle.textContent = 'Tổ chức Đoàn – Đội';
+  }
+
+  const createContentCarousel = (items, className, label) => {
+    const carousel = document.createElement('div');
+    carousel.className = `content-carousel ${className}`;
+    carousel.setAttribute('aria-label', label);
+    const viewport = document.createElement('div');
+    viewport.className = 'carousel-viewport';
+    const track = document.createElement('div');
+    track.className = 'carousel-track';
+    items.forEach((item) => {
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      slide.append(item);
+      track.append(slide);
+    });
+    viewport.append(track);
+    carousel.append(viewport);
+    track.firstElementChild?.classList.add('is-active');
+    if (items.length < 2) return carousel;
+
+    let activeIndex = 0;
+    const dots = document.createElement('div');
+    dots.className = 'slider-dots';
+    const counter = document.createElement('span');
+    counter.className = 'slide-count';
+    const showSlide = (index) => {
+      activeIndex = (index + items.length) % items.length;
+      [...track.children].forEach((slide, slideIndex) => slide.classList.toggle('is-active', slideIndex === activeIndex));
+      [...dots.children].forEach((dot, dotIndex) => dot.classList.toggle('is-active', dotIndex === activeIndex));
+      counter.textContent = `${activeIndex + 1} / ${items.length}`;
+    };
+    [['prev', '‹', -1], ['next', '›', 1]].forEach(([className, symbol, direction]) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = `slider-btn ${className}`;
+      button.textContent = symbol;
+      button.setAttribute('aria-label', direction < 0 ? 'Slide trước' : 'Slide tiếp theo');
+      button.addEventListener('click', () => showSlide(activeIndex + direction));
+      carousel.append(button);
+    });
+    items.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'slider-dot';
+      dot.setAttribute('aria-label', `Xem slide ${index + 1}`);
+      dot.addEventListener('click', () => showSlide(index));
+      dots.append(dot);
+    });
+    carousel.append(counter, dots);
+    showSlide(0);
+    let touchStartX = 0;
+    carousel.addEventListener('touchstart', (event) => { touchStartX = event.changedTouches[0].screenX; }, { passive:true });
+    carousel.addEventListener('touchend', (event) => {
+      const distance = event.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(distance) >= 40) showSlide(activeIndex + (distance < 0 ? 1 : -1));
+    }, { passive:true });
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let timer = setInterval(() => showSlide(activeIndex + 1), 4000);
+      carousel.addEventListener('mouseenter', () => clearInterval(timer));
+      carousel.addEventListener('mouseleave', () => { timer = setInterval(() => showSlide(activeIndex + 1), 4000); });
+    }
+    return carousel;
+  };
+
+  const teamPhotoWrap = document.querySelector('.team-photo-wrap');
+  if (teamPhotoWrap) {
+    const teamImages = ['assets/doi-bong.jpg', 'assets/album/9.jpg', 'assets/dong-hanh/4.2.7.jpg'];
+    const teamSlides = teamImages.map((src, index) => {
+      const frame = document.createElement('figure');
+      frame.className = 'photo-frame';
+      const image = document.createElement('img');
+      image.className = 'team-photo';
+      image.src = src;
+      image.alt = `Khoảnh khắc đội bóng thiếu niên, ảnh ${index + 1}`;
+      const caption = document.createElement('figcaption');
+      caption.className = 'cap';
+      caption.textContent = `Khoảnh khắc đội bóng thiếu niên · ${index + 1}/${teamImages.length}`;
+      frame.append(image, caption);
+      return frame;
+    });
+    const oldFrame = teamPhotoWrap.querySelector('.photo-frame');
+    if (oldFrame) oldFrame.replaceWith(createContentCarousel(teamSlides, 'team-carousel', 'Album đội bóng thiếu niên'));
+  }
+
+  const activityImageGroups = [
+    ['assets/album/5.1.1.jpg', 'assets/album/5.1.2.jpg', 'assets/album/5.1.3.jpg', 'assets/album/5.1.4.jpg', 'assets/album/5.1.5.jpg'],
+    ['assets/album/5.2.1.jpg', 'assets/album/5.2.2.jpg', 'assets/album/5.2.3.jpg'],
+    ['assets/album/5.3.1.jpg', 'assets/album/5.3.2.jpg', 'assets/album/5.3.3.jpg', 'assets/album/5.3.4.jpg', 'assets/album/5.3.5.jpg', 'assets/album/5.3.6.jpg'],
+    ['assets/album/5.4.1.jpg', 'assets/album/5.4.2.jpg', 'assets/album/5.4.3.jpg', 'assets/album/5.4.4.jpg', 'assets/album/5.4.5.jpg', 'assets/album/5.4.6.jpg']
+  ];
+  document.querySelectorAll('.activity-story .story-media').forEach((media, activityIndex) => {
+    const images = (activityImageGroups[activityIndex] || []).map((src, imageIndex) => {
+      const image = document.createElement('img');
+      image.src = src;
+      image.alt = `Khoảnh khắc hoạt động ${activityIndex + 1}, ảnh ${imageIndex + 1}`;
+      if (activityIndex === 3 && imageIndex === 0) image.className = 'activity-portrait-focus';
+      return image;
+    });
+    if (images.length) media.replaceChildren(createContentCarousel(images, 'activity-image-carousel', `Ảnh hoạt động ${activityIndex + 1}`));
+  });
+  const trainingStory = document.querySelector('.activity-story:nth-child(2) .story-copy');
+  if (trainingStory) {
+    const title = trainingStory.querySelector('h3');
+    const description = trainingStory.querySelector('p');
+    if (title) title.textContent = 'Tập huấn và lan tỏa kỹ năng';
+    if (description) description.textContent = 'Các chị phụ trách phân đội tham gia tập huấn, rồi trở về hướng dẫn và chia sẻ lại những kỹ năng cần thiết cho các em. Từ đó, tinh thần học hỏi được lan tỏa trong từng hoạt động của chi đội.';
+  }
+  const rehearsalStory = document.querySelector('.activity-story:nth-child(4) .story-copy');
+  if (rehearsalStory) {
+    const title = rehearsalStory.querySelector('h3');
+    const description = rehearsalStory.querySelector('p');
+    if (title) title.textContent = 'Quá trình tập luyện văn nghệ';
+    if (description) description.textContent = 'Từ những buổi tập đầu tiên còn bỡ ngỡ đến khi các động tác và giai điệu dần hòa nhịp, các em cùng nhau kiên trì luyện tập để mang đến những tiết mục thật tự tin trong ngày hội trại.';
+  }
+  const environmentStory = document.querySelector('.activity-story:nth-child(3) .story-copy p');
+  if (environmentStory) environmentStory.textContent = 'Các đội viên và đoàn viên thanh niên cùng chăm chút từng góc sân, con đường và không gian chung bằng những việc làm giản dị nhưng đầy trách nhiệm.';
+  const albumSection = [...document.querySelectorAll('section.block')].find((section) => section.querySelector('.section-head .idx')?.textContent.trim() === '07');
+  if (albumSection) {
+    const title = albumSection.querySelector('.section-head h2');
+    if (title) title.textContent = 'Album ảnh Chi đội và Chi đoàn';
+    albumSection.querySelectorAll('.gallery img').forEach((image, index) => {
+      image.alt = `Khoảnh khắc hoạt động Chi đội và Chi đoàn ${index + 1}`;
+    });
+  }
+</script>
+
+</body>
+</html>
